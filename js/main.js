@@ -21,24 +21,38 @@ var lngMax = d3.max(greenland, function(point) {
 	return point.longitude
 })
 
+var meltMax = d3.max(greenland, function(point) {
+	return point["year 2000"]
+})
+
+var meltX = d3.scale.linear() 
+	.domain([0, meltMax])
+	.range(["white", "red"])
+
 var x = d3.scale.linear()
 	.domain([lngMin, lngMax])
 	.range([0, width])
 
 var y = d3.scale.linear()
 	.domain([latMin, latMax])
-	.range([0, height])
+	.range([height, 0])
 
 var meltProjection = d3.select('svg')
-	.selectAll('square')
+	.selectAll('circle')
 	.data(greenland)
 
 meltProjection.enter()
-	.append('rect')
-	.attr('x', 10)
-	.attr('y', 10)
-	.attr('width', 10)
-	.attr('height', 10)
+	.append('circle')
+	.attr('cx', function(d){
+		return x(d.longitude)
+	})
+	.attr('cy', function(d){
+		return y(d.latitude)
+	})
+	.attr('r', 3)
+	.style('fill', function(d) {
+		return meltX(d["year 2000"])
+	})
 
 
 
