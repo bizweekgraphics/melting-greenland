@@ -13,12 +13,25 @@ $('#year-submit').click(function() {
 })
 
 $('li').click(function() {
+
+	var button = $(this).children()
+	$('button').removeClass()
+
 	var liYear = this.textContent
 	if($('circle').length === 0) {
 		appendMap(liYear)	
 	} else {
 		updateProjection(liYear)
 	}
+
+	if(liYear === "1979"){
+		button.addClass('bright')
+	} else if(liYear == "1995") {
+		button.addClass('brighter')
+	} else {
+		button.addClass('brightest')
+	}
+
 })
 
 $(window).on('resize', function() {

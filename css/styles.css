@@ -17,26 +17,39 @@ button {
   border-radius: 1em;
 }
 
-#bright {
+.bright {
   -webkit-animation-name: yellowPulse;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
 }
 
-#brighter {
+.brighter {
   -webkit-animation-name: orangePulse;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
 }
 
-#brightest {
+.brightest {
   -webkit-animation-name: redPulse;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
 }
 
-#sun {
+
+.yellow-fill {
   -webkit-animation-name: yellowFillPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+.orange-fill {
+  -webkit-animation-name: orangeFillPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+.red-fill {
+  -webkit-animation-name: redFillPulse;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
 }
@@ -61,10 +74,31 @@ button {
 }
 
 @-webkit-keyframes yellowFillPulse {
-  from {
-    fill: #fffd80; -webkit-box-shadow: 0 0 9px #fffd80; }
-  50% {
-    fill: #fdff00; -webkit-box-shadow: 0 0 18px #fdff00; }
-  to {
-    fill: #fffd80; -webkit-box-shadow: 0 0 9px #fffd80; } }
+  from { fill: #fffd80; -webkit-box-shadow: 0 0 9px #fffd80; }
+  50% { fill: #fdff00; -webkit-box-shadow: 0 0 18px #fdff00; }
+  to { fill: #fffd80; -webkit-box-shadow: 0 0 9px #fffd80; } }
+
+@-webkit-keyframes orangeFillPulse {
+  from { fill: #ffc139; -webkit-box-shadow: 0 0 9px #ffc139; }
+  50% { fill: #ff8e05; -webkit-box-shadow: 0 0 18px #ff8e05; }
+  to { fill: #ffc139; -webkit-box-shadow: 0 0 9px #ffc139; } }
+
+@-webkit-keyframes redFillPulse {
+  from { fill: #ff4752; -webkit-box-shadow: 0 0 9px #ff4752; }
+  50% { fill: #ff0923; -webkit-box-shadow: 0 0 18px #ff0923; }
+  to { fill: #ff4752; -webkit-box-shadow: 0 0 9px #ff4752; } }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
