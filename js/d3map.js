@@ -1,6 +1,7 @@
 var width = 800
 var height = 600
 var aspect = width/height
+var backgroundColor = "black"
 
 var svg = d3.select('.chart-wrapper').append('svg')
 	.attr('width', '100%')
@@ -61,7 +62,11 @@ var appendMap = function(year) {
 		.duration(500)
 		.delay(100)
 		.style('fill', function(d) {
-			return meltX(d["year " + year])
+			if(d["year " + year] === 0){
+				return backgroundColor
+			} else {
+				return meltX(d["year " + year])			
+			}
 		})
 
 	var textProjection = d3.select('svg')
@@ -76,7 +81,7 @@ var appendMap = function(year) {
 		.attr('x', 180)
 		.attr('y', 50)
 		.attr('id', 'text-year')
-		.style('fill', 'black')
+		.style('fill', 'white')
 		.style('font-size', 55)
 
 	d3.select('svg')
@@ -96,7 +101,11 @@ var updateProjection = function(year) {
 		.duration(1000)
 		.delay(100)
 		.style('fill', function(d) {
-			return meltX(d["year " + year])
+			if(d["year " + year] === 0){
+				return backgroundColor
+			} else {
+				return meltX(d["year " + year])			
+			}
 		})
 
 	d3.selectAll('text')
