@@ -1,7 +1,62 @@
-li:hover {
+button:hover {
 	opacity: .7;
 }
 
 li {
 	margin: 2em;
+  display: inline-block;
 }
+
+ul {
+  text-align: center;
+  -webkit-padding-start: 0px;
+}
+
+button {
+  box-shadow: none;
+  padding: 1em 2em 1em 2em;
+  border-radius: 1em;
+}
+
+#bright {
+  -webkit-animation-name: yellowPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+#brighter {
+  -webkit-animation-name: orangePulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+#brightest {
+  -webkit-animation-name: redPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+button {
+  -webkit-animation-name: yellowPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes yellowPulse {
+  from { background-color: #fffa50; -webkit-box-shadow: 0 0 9px #fffa50; }
+  50% { background-color: #fdff00; -webkit-box-shadow: 0 0 18px #fdff00; }
+  to { background-color: #fffa50; -webkit-box-shadow: 0 0 9px #fffa50; }
+}
+
+@-webkit-keyframes orangePulse {
+  from { background-color: #ffc139; -webkit-box-shadow: 0 0 9px #ffc139; }
+  50% { background-color: #ff8e05; -webkit-box-shadow: 0 0 18px #ff8e05; }
+  to { background-color: #ffc139; -webkit-box-shadow: 0 0 9px #ffc139; }
+}
+
+@-webkit-keyframes redPulse {
+  from { background-color: #ff4752; -webkit-box-shadow: 0 0 9px #ff4752; }
+  50% { background-color: #ff0923; -webkit-box-shadow: 0 0 18px #ff0923; }
+  to { background-color: #ff4752; -webkit-box-shadow: 0 0 9px #ff4752; }
+}
+
