@@ -17,14 +17,16 @@ $('li').click(function() {
 	}
 })
 
-
-var width = 1500
-var height = 900
+var width = 800
+var height = 600
+var aspect = width/height
 
 var svg = d3.select('body').append('svg')
-	.attr('width', width)
-	.attr('height', height)
+	.attr('width', '100%')
+	.attr('height', '100%')
 	.attr('id', 'chart')
+	.attr('viewBox', '0 0 800 800')
+	.attr('preserverAspectRatio', 'xMinYMin')
 
 var latMin = d3.min(greenland, function(point) {
 	return point.latitude
@@ -65,7 +67,6 @@ var appendMap = function(year) {
 
 	meltProjection.enter()
 		.append('circle')
-
 		.attr('cx', function(d){
 			return x(d.longitude)
 		})
@@ -111,7 +112,13 @@ var updateProjection = function(year) {
 		.text(year)
 }
 
-
+$(window).on('resize', function() {
+	var chart = $('svg')
+	var container = chart.parent()
+	var targetWidth = container.width();
+	chart.attr('width', targetWidth);
+	chart.attr('height', Math.round(targetWidth / aspect));
+}).trigger('resize')
 
 
 
