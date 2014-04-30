@@ -11,7 +11,7 @@ button:hover {
 	opacity: .7;
 }
 
-li {
+.year-ul li {
 	margin: 2em;
   display: inline-block;
 }
@@ -26,12 +26,23 @@ button {
   border-radius: 1em;
 }
 
+.key-wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+#text-key li {
+  display: inline-block;
+  width: 32.82%;
+  color: white;
+}
+
 #key {
   margin: 0 auto;
   color: white;
   width: 80%;
   height: 20%;
-  margin-bottom: 5%;
+  /*margin-bottom: 5%;*/
   background: #ffffff; /* Old browsers */
   background: -moz-linear-gradient(left, #ffffff 0%, #ffff00 50%, #ff0000 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(50%,#ffff00), color-stop(100%,#ff0000)); /* Chrome,Safari4+ */
@@ -42,6 +53,21 @@ button {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ff0000',GradientType=1 ); /* IE6-9 */
 }
 
+.arrow-wrapper{
+  margin: 0 auto;
+  width: 80%;
+}
+
+#arrow {
+  color: white;
+  font-size: 2em;
+  position: relative;
+  -webkit-margin-before: 0em;
+}
+
+svg {
+  margin-top: 3em;
+}
 
 .bright {
   -webkit-animation-name: yellowPulse;

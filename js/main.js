@@ -12,7 +12,7 @@ $(document).ready(function() {
 // 	return false;
 // })
 
-$('li').click(function() {
+$('.year-ul li').click(function() {
 
 	//select button inside list element
 	var button = $(this).children()
@@ -44,4 +44,6 @@ $(window).on('resize', function() {
 }).trigger('resize')
 
 
-
+$('circle').click(function() {
+	alert('test')
+})

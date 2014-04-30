@@ -27,7 +27,9 @@ var lngMax = d3.max(greenland, function(point) {
 })
 
 //calculated in maxHelper.rb
-var meltMax = 99
+// var meltMax = 99
+
+var meltMax = 100
 
 var meltX = d3.scale.linear() 
 	.domain([0, meltMax/2, meltMax])
@@ -57,6 +59,11 @@ var appendMap = function(year) {
 		})
 		.attr('r', 3)
 		.attr('class', 'data')
+		.on('click', function(d) {
+			var position = d["year " + year]
+			$('#arrow').css('left', position + '%')
+			console.log(position)
+		})
 		.style('fill', 'black')
 		.transition()
 		.duration(500)
@@ -68,6 +75,7 @@ var appendMap = function(year) {
 				return meltX(d["year " + year])			
 			}
 		})
+
 
 	var textProjection = d3.select('svg')
 		.selectAll('text')
