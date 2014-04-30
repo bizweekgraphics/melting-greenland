@@ -16,6 +16,8 @@ $('.year-ul li').click(function() {
 
 	$('#day-text').text('')
 
+	$('#arrow').animate({left: "0%"}, 1000)
+
 	//select button inside list element
 	var button = $(this).children()
 	$('button').removeClass()
