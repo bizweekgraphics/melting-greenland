@@ -26,10 +26,9 @@ var lngMax = d3.max(greenland, function(point) {
 	return point.longitude
 })
 
-//calculated in maxHelper.rb
-// var meltMax = 99
+// calculated in maxHelper.rb
+var meltMax = 160
 
-var meltMax = 100
 
 var meltX = d3.scale.linear() 
 	.domain([0, meltMax/2, meltMax])
@@ -60,9 +59,10 @@ var appendMap = function(year) {
 		.attr('r', 3)
 		.attr('class', 'data')
 		.on('click', function(d) {
-			var position = d["year " + year]
+			var position = (d["year " + year] / 160) * 100
 			$('#arrow').animate({
 				left: position + '%'})
+			$('#day-text').text(d["year " + year])
 			console.log(position)
 		})
 		.style('fill', 'black')
@@ -101,11 +101,28 @@ var appendMap = function(year) {
 		.attr('id', 'sun')
 		.attr('class', 'bright-fill')
 		.style('fill', 'yellow')
+
+	d3.select('svg')
+		.append('text')
+		.text('')
+		.attr('width', 100)
+		.attr('height', 150)
+		.attr('x', 670)
+		.attr('y', 100)
+		.attr('id', 'day-text')
+		.style('font-size', '2em')
 }
 
 var updateProjection = function(year) {
 
 	d3.selectAll('.data')
+		.on('click', function(d) {
+			var position = (d["year " + year] / 160) * 100
+			$('#arrow').animate({
+				left: position + '%'})
+			$('#day-text').text(d["year " + year])
+			console.log(position)
+		})
 		.transition()
 		.duration(1000)
 		.delay(100)
@@ -117,7 +134,7 @@ var updateProjection = function(year) {
 			}
 		})
 
-	d3.selectAll('text')
+	d3.selectAll('#text-year')
 		.text(year)
 
 	d3.select('#sun')
