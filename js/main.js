@@ -14,6 +14,8 @@ $(document).ready(function() {
 
 $('.year-ul li').click(function() {
 
+	$('#day-text').text('')
+
 	//select button inside list element
 	var button = $(this).children()
 	$('button').removeClass()

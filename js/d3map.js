@@ -59,10 +59,18 @@ var appendMap = function(year) {
 		.attr('r', 3)
 		.attr('class', 'data')
 		.on('click', function(d) {
-			var position = (d["year " + year] / 160) * 100
+			var days = (d["year " + year])
+			var text;
+			if(days === 1){
+				text = "1 Day"
+			} else {
+				text = days + " Days"
+			}
+
+			var position = (days / 160) * 100
 			$('#arrow').animate({
 				left: position + '%'})
-			$('#day-text').text(d["year " + year] + " Days")
+			$('#day-text').text(text)
 			console.log(position)
 		})
 		.style('fill', 'black')
@@ -130,10 +138,18 @@ var updateProjection = function(year) {
 
 	d3.selectAll('.data')
 		.on('click', function(d) {
-			var position = (d["year " + year] / 160) * 100
+			var days = (d["year " + year])
+			var text;
+			if(days === 1){
+				text = "1 Day"
+			} else {
+				text = days + " Days"
+			}
+
+			var position = (days / 160) * 100
 			$('#arrow').animate({
 				left: position + '%'})
-			$('#day-text').text(d["year " + year] + " Days")
+			$('#day-text').text(text)
 			console.log(position)
 		})
 		.transition()
