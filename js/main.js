@@ -60,6 +60,7 @@ var appendMap = function(year) {
 
 	meltProjection.enter()
 		.append('circle')
+
 		.attr('cx', function(d){
 			return x(d.longitude)
 		})
@@ -67,9 +68,14 @@ var appendMap = function(year) {
 			return y(d.latitude)
 		})
 		.attr('r', 3)
+		.style('fill', 'white')
+		.transition()
+		.duration(500)
+		.delay(100)
 		.style('fill', function(d) {
 			return meltX(d["year " + year])
 		})
+
 
 	var textProjection = d3.select('svg')
 		.selectAll('text')
