@@ -61,7 +61,8 @@ var appendMap = function(year) {
 		.attr('class', 'data')
 		.on('click', function(d) {
 			var position = d["year " + year]
-			$('#arrow').css('left', position + '%')
+			$('#arrow').animate({
+				left: position + '%'})
 			console.log(position)
 		})
 		.style('fill', 'black')
