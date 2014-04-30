@@ -27,15 +27,25 @@ button {
 }
 
 .key-wrapper {
-  width: 100%;
+  width: 80%;
   margin: 0 auto;
 }
 
 #text-key li {
   display: inline-block;
-  width: 32.82%;
+  width: 31%;
   color: white;
 }
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+
 
 #key {
   margin: 0 auto;

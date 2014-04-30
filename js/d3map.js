@@ -62,7 +62,7 @@ var appendMap = function(year) {
 			var position = (d["year " + year] / 160) * 100
 			$('#arrow').animate({
 				left: position + '%'})
-			$('#day-text').text(d["year " + year])
+			$('#day-text').text(d["year " + year] + " Days")
 			console.log(position)
 		})
 		.style('fill', 'black')
@@ -102,15 +102,28 @@ var appendMap = function(year) {
 		.attr('class', 'bright-fill')
 		.style('fill', 'yellow')
 
+	// d3.select('svg')
+	// 	.append('text')
+	// 	.text('test')
+	// 	.attr('width', 100)
+	// 	.attr('height', 150)
+	// 	.attr('x', 685)
+	// 	.attr('y', 100)
+	// 	.attr('id', 'day-text')
+	// 	.style('font-size', '2em')
+
+
 	d3.select('svg')
 		.append('text')
 		.text('')
 		.attr('width', 100)
 		.attr('height', 150)
-		.attr('x', 670)
-		.attr('y', 100)
+		.attr('x', 600)
+		.attr('y', 350)
 		.attr('id', 'day-text')
-		.style('font-size', '2em')
+		.style('font-size', '3em')
+		.style('fill', 'white')
+
 }
 
 var updateProjection = function(year) {
@@ -120,7 +133,7 @@ var updateProjection = function(year) {
 			var position = (d["year " + year] / 160) * 100
 			$('#arrow').animate({
 				left: position + '%'})
-			$('#day-text').text(d["year " + year])
+			$('#day-text').text(d["year " + year] + " Days")
 			console.log(position)
 		})
 		.transition()
