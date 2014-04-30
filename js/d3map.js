@@ -57,7 +57,7 @@ var appendMap = function(year) {
 		})
 		.attr('r', 3)
 		.attr('class', 'data')
-		.style('fill', 'white')
+		.style('fill', 'black')
 		.transition()
 		.duration(500)
 		.delay(100)
