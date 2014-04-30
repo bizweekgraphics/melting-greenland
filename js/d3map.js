@@ -55,6 +55,7 @@ var appendMap = function(year) {
 			return y(d.latitude)
 		})
 		.attr('r', 3)
+		.attr('class', 'data')
 		.style('fill', 'white')
 		.transition()
 		.duration(500)
@@ -74,21 +75,22 @@ var appendMap = function(year) {
 		.attr('height', 200)
 		.attr('x', 180)
 		.attr('y', 50)
+		.attr('id', 'text-year')
 		.style('fill', 'black')
 		.style('font-size', 55)
 
-	// d3.select('svg')
-	// 	.append('circle')
-	// 	.attr('cx', 700)
-	// 	.attr('cy', 90)
-	// 	.attr('r', 80)
-	// 	.attr('id', 'sun')
-	// 	.style('fill', 'yellow')
+	d3.select('svg')
+		.append('circle')
+		.attr('cx', 700)
+		.attr('cy', 90)
+		.attr('r', 80)
+		.attr('id', 'sun')
+		.style('fill', 'yellow')
 }
 
 var updateProjection = function(year) {
 
-	d3.selectAll('circle')
+	d3.selectAll('.data')
 		.transition()
 		.duration(1000)
 		.delay(100)
@@ -98,4 +100,19 @@ var updateProjection = function(year) {
 
 	d3.selectAll('text')
 		.text(year)
+
+	d3.select('#sun')
+		.transition()
+		.duration(1000)
+		.delay(100)
+		.style('fill', function() {
+			var text = d3.select('#text-year').text()
+			if(text === "1979"){
+				return 'yellow'
+			} else if(text==="1995") {
+				return 'orange'
+			} else {
+				return 'red'
+			}
+		})
 }
