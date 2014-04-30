@@ -1,16 +1,20 @@
 $('#year-submit').click(function() {
-	$('circle').remove()
-	$('text').remove()
 	var submitYear = $('#year').val()
-	appendMap(submitYear)
+	if($('circle').length === 0) {
+		appendMap(submitYear)	
+	} else {
+		updateProjection(submitYear)
+	}
 	return false;
 })
 
 $('li').click(function() {
-	$('circle').remove()
-	$('text').remove()
 	var liYear = this.textContent
-	appendMap(liYear)
+	if($('circle').length === 0) {
+		appendMap(liYear)	
+	} else {
+		updateProjection(liYear)
+	}
 })
 
 
@@ -22,37 +26,38 @@ var svg = d3.select('body').append('svg')
 	.attr('height', height)
 	.attr('id', 'chart')
 
+var latMin = d3.min(greenland, function(point) {
+	return point.latitude
+})
+
+var lngMin = d3.min(greenland, function(point) {
+	return point.longitude
+})
+
+var latMax = d3.max(greenland, function(point) {
+	return point.latitude
+})
+
+var lngMax = d3.max(greenland, function(point) {
+	return point.longitude
+})
+
+//calculated in maxHelper.rb
+var meltMax = 99
+
+var meltX = d3.scale.linear() 
+	.domain([0, meltMax/2, meltMax])
+	.range(["white", "yellow", "red"])
+
+var x = d3.scale.linear()
+	.domain([lngMin, lngMax])
+	.range([0, width])
+
+var y = d3.scale.linear()
+	.domain([latMin, latMax])
+	.range([height, 0])
+
 var appendMap = function(year) {
-	var latMin = d3.min(greenland, function(point) {
-		return point.latitude
-	})
-
-	var lngMin = d3.min(greenland, function(point) {
-		return point.longitude
-	})
-
-	var latMax = d3.max(greenland, function(point) {
-		return point.latitude
-	})
-
-	var lngMax = d3.max(greenland, function(point) {
-		return point.longitude
-	})
-
-	//calculated in maxHelper.rb
-	var meltMax = 99
-
-	var meltX = d3.scale.linear() 
-		.domain([0, meltMax/2, meltMax])
-		.range(["white", "yellow", "red"])
-
-	var x = d3.scale.linear()
-		.domain([lngMin, lngMax])
-		.range([0, width])
-
-	var y = d3.scale.linear()
-		.domain([latMin, latMax])
-		.range([height, 0])
 
 	var meltProjection = d3.select('svg')
 		.selectAll('circle')
@@ -90,6 +95,20 @@ var appendMap = function(year) {
 		.attr('y', 150)
 		.style('fill', 'black')
 		.style('font-size', 55)
+}
+
+var updateProjection = function(year) {
+
+	d3.selectAll('circle')
+		.transition()
+		.duration(1000)
+		.delay(100)
+		.style('fill', function(d) {
+			return meltX(d["year " + year])
+		})
+
+	d3.selectAll('text')
+		.text(year)
 }
 
 
