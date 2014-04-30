@@ -45,5 +45,5 @@
 
 @-webkit-keyframes brightestFillPulse {
   from { fill: #fffc4d; -webkit-box-shadow: 0 0 9px #fffc4d; }
-  50% { fill: ##fff906; -webkit-box-shadow: 0 0 18px ##fff906; }
+  50% { fill: #fff500; -webkit-box-shadow: 0 0 18px #fff500; }
   to { fill: #fffc4d; -webkit-box-shadow: 0 0 9px #fffc4d; } }
