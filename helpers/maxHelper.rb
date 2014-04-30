@@ -4,13 +4,13 @@ require 'pry'
 max_array = []
 
 CSV.foreach('../greenlandmeltmaps.csv') do |row|
-	max_array << row.max.to_i
+	max_array << row
 end
 binding.pry
 
-max = max_array.max
+max = max_array.flatten.map(&:to_i).max
 
 
 puts max
 
-#max = 99
+#max = 154
