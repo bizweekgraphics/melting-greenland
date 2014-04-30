@@ -6,26 +6,6 @@ $('#year-submit').click(function() {
 })
 
 
-
-// var maxMeltArray = []
-
-// var calcMax = function() {
-// 	for (var i=1973;i<2014;i++) {
-// 		var dfd = new jQuery.Deferred();
-// 		var max = d3.max(greenland, function(point) {
-// 			return point["year" + year]
-// 		})
-// 		dfd.resolve(max)
-// 	}
-// 	return dfd.promise()
-// }
-
-// $.when(calcMax() ).then(
-// 	function(status) {
-// 		maxMeltArray
-// 	})
-
-
 var width = 1500
 var height = 900
 
@@ -51,9 +31,8 @@ var appendMap = function(year) {
 		return point.longitude
 	})
 
-	var meltMax = d3.max(greenland, function(point) {
-		return point["year " + year]
-	})
+	//calculated in maxHelper.rb
+	var meltMax = 99
 
 	var meltX = d3.scale.linear() 
 		.domain([0, meltMax])
