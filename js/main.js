@@ -2,15 +2,15 @@ $(document).ready(function() {
 	appendMap(1979)
 })
 
-$('#year-submit').click(function() {
-	var submitYear = $('#year').val()
-	if($('circle').length === 0) {
-		appendMap(submitYear)	
-	} else {
-		updateProjection(submitYear)
-	}
-	return false;
-})
+// $('#year-submit').click(function() {
+// 	var submitYear = $('#year').val()
+// 	if($('circle').length === 0) {
+// 		appendMap(submitYear)	
+// 	} else {
+// 		updateProjection(submitYear)
+// 	}
+// 	return false;
+// })
 
 $('li').click(function() {
 
