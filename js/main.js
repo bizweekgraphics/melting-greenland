@@ -14,6 +14,7 @@ $('#year-submit').click(function() {
 
 $('li').click(function() {
 
+	//select button inside list element
 	var button = $(this).children()
 	$('button').removeClass()
 

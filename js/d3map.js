@@ -85,7 +85,7 @@ var appendMap = function(year) {
 		.attr('cy', 90)
 		.attr('r', 80)
 		.attr('id', 'sun')
-		.attr('class', 'yellow-fill')
+		.attr('class', 'bright-fill')
 		.style('fill', 'yellow')
 }
 
@@ -110,13 +110,13 @@ var updateProjection = function(year) {
 			var text = d3.select('#text-year').text()
 			$('#sun').attr('class', '')
 			if(text === "1979"){
-				$('#sun').attr('class', 'yellow-fill')
+				$('#sun').attr('class', 'bright-fill')
 				return 'yellow'
 			} else if(text==="1995") {
-				$('#sun').attr('class', 'orange-fill')
+				$('#sun').attr('class', 'brighter-fill')
 				return 'orange'
 			} else {
-				$('#sun').attr('class', 'red-fill')
+				$('#sun').attr('class', 'brightest-fill')
 				return 'red'
 			}
 		})

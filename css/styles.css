@@ -54,6 +54,27 @@ button {
   -webkit-animation-iteration-count: infinite;
 }
 
+.bright-fill {
+  -webkit-animation-name: brightFillPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+
+}
+
+.brighter-fill {
+  -webkit-animation-name: brighterFillPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+
+}
+
+.brightest-fill {
+  -webkit-animation-name: brightestFillPulse;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+
+}
+
 
 @-webkit-keyframes yellowPulse {
   from { background-color: #fffd80; -webkit-box-shadow: 0 0 9px #fffd80; }
@@ -89,7 +110,20 @@ button {
   to { fill: #ff4752; -webkit-box-shadow: 0 0 9px #ff4752; } }
 
 
+@-webkit-keyframes brightFillPulse {
+  from { fill: #ffffb6; -webkit-box-shadow: 0 0 9px #ffffb6; }
+  50% { fill: #fffe89; -webkit-box-shadow: 0 0 18px #fffe89; }
+  to { fill: #ffffb6; -webkit-box-shadow: 0 0 9px #ffffb6; } }
 
+@-webkit-keyframes brighterFillPulse {
+  from { fill: #fffe89; -webkit-box-shadow: 0 0 9px #fffe89; }
+  50% { fill: #fffc4d; -webkit-box-shadow: 0 0 18px #fffc4d; }
+  to { fill: #fffe89; -webkit-box-shadow: 0 0 9px #fffe89; } }
+
+@-webkit-keyframes brightestFillPulse {
+  from { fill: #fffc4d; -webkit-box-shadow: 0 0 9px #fffc4d; }
+  50% { fill: ##fff906; -webkit-box-shadow: 0 0 18px ##fff906; }
+  to { fill: #fffc4d; -webkit-box-shadow: 0 0 9px #fffc4d; } }
 
 
 
