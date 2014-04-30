@@ -1,8 +1,16 @@
 $('#year-submit').click(function() {
 	$('circle').remove()
-	var year = $('#year').val()
-	appendMap(year)
+	$('text').remove()
+	var submitYear = $('#year').val()
+	appendMap(submitYear)
 	return false;
+})
+
+$('li').click(function() {
+	$('circle').remove()
+	$('text').remove()
+	var liYear = this.textContent
+	appendMap(liYear)
 })
 
 
@@ -35,8 +43,8 @@ var appendMap = function(year) {
 	var meltMax = 99
 
 	var meltX = d3.scale.linear() 
-		.domain([0, meltMax])
-		.range(["white", "red"])
+		.domain([0, meltMax/2, meltMax])
+		.range(["white", "yellow", "red"])
 
 	var x = d3.scale.linear()
 		.domain([lngMin, lngMax])
@@ -62,6 +70,20 @@ var appendMap = function(year) {
 		.style('fill', function(d) {
 			return meltX(d["year " + year])
 		})
+
+	var textProjection = d3.select('svg')
+		.selectAll('text')
+		.data([1])
+
+	textProjection.enter()
+		.append('text')
+		.text(year)
+		.attr('width', 400)
+		.attr('height', 200)
+		.attr('x', 250)
+		.attr('y', 150)
+		.style('fill', 'black')
+		.style('font-size', 55)
 }
 
 
