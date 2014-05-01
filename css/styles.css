@@ -9,6 +9,25 @@ html {
 height : 100%;
 }
 
+.slide-wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.year-slide {
+  padding: none;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+#slide-text {
+  position: relative;
+  color: white;
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+}
+
 /*button:hover {
 	opacity: .7;
 }*/

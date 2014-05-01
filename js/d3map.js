@@ -104,14 +104,14 @@ var appendMap = function(year) {
 		.style('font-size', 55)
 
 	//append sun to svg
-	d3.select('svg')
-		.append('circle')
-		.attr('cx', 700)
-		.attr('cy', 90)
-		.attr('r', 80)
-		.attr('id', 'sun')
-		.attr('class', 'bright-fill')
-		.style('fill', 'yellow')
+	// d3.select('svg')
+	// 	.append('circle')
+	// 	.attr('cx', 700)
+	// 	.attr('cy', 90)
+	// 	.attr('r', 80)
+	// 	.attr('id', 'sun')
+	// 	.attr('class', 'bright-fill')
+	// 	.style('fill', 'yellow')
 
 	// d3.select('svg')
 	// 	.append('text')
@@ -210,9 +210,6 @@ var updateProjection = function(year) {
 			$('#day-text').text(text)
 			console.log(position)
 		})
-		// .transition()
-		// .duration(1000)
-		// .delay(100)
 		.style('fill', function(d) {
 			if(d["year " + year] === 0){
 				return backgroundColor
@@ -224,24 +221,33 @@ var updateProjection = function(year) {
 	d3.selectAll('#text-year')
 		.text(year)
 
-	d3.select('#sun')
-		.transition()
-		.duration(1000)
-		.delay(100)
-		.style('fill', function() {
-			var text = d3.select('#text-year').text()
-			$('#sun').attr('class', '')
-			if(text === "1979"){
-				$('#sun').attr('class', 'bright-fill')
-				return 'yellow'
-			} else if(text==="1995") {
-				$('#sun').attr('class', 'brighter-fill')
-				return 'orange'
-			} else {
-				$('#sun').attr('class', 'brightest-fill')
-				return 'red'
-			}
-		})
+	// d3.select('#sun')
+	// 	.transition()
+	// 	.duration(1000)
+	// 	.delay(100)
+	// 	.style('fill', function() {
+	// 		var text = d3.select('#text-year').text()
+	// 		$('#sun').attr('class', '')
+	// 		if(text === "1979"){
+	// 			$('#sun').attr('class', 'bright-fill')
+	// 			return 'yellow'
+	// 		} else if(text==="1995") {
+	// 			$('#sun').attr('class', 'brighter-fill')
+	// 			return 'orange'
+	// 		} else {
+	// 			$('#sun').attr('class', 'brightest-fill')
+	// 			return 'red'
+	// 		}
+	// 	})
+
+	var text = d3.select('#text-year').text()
+		if(text === "1979"){
+			return 'yellow'
+		} else if(text==="1995") {
+			return 'orange'
+		} else {
+			return 'red'
+		}
 }
 
 

@@ -1,4 +1,17 @@
 $(document).ready(function() {
+
+	$('.year-slide').on('input', function(event) {
+		var year = this.value,
+				range = 2013 - 1979,
+				difference = this.value - 1979,
+				position = (difference * 100 / range) - 1.5,
+				yearText = $('#slide-text')
+		yearText.text(year)
+		yearText.css('left', position + '%')
+
+		updateProjection(year)
+	})
+
 	appendMap(1979)
 })
 
@@ -12,32 +25,7 @@ $(document).ready(function() {
 // 	return false;
 // })
 
-// $('.year-ul li').click(function() {
 
-// 	$('#day-text').text('')
-
-// 	$('#arrow').animate({left: "0%"}, 1000)
-
-// 	//select button inside list element
-// 	var button = $(this).children()
-// 	$('button').removeClass()
-
-// 	var liYear = this.textContent
-// 	if($('circle').length === 0) {
-// 		appendMap(liYear)	
-// 	} else {
-// 		updateProjection(liYear)
-// 	}
-
-// 	if(liYear === "1979"){
-// 		button.addClass('bright')
-// 	} else if(liYear == "1995") {
-// 		button.addClass('brighter')
-// 	} else {
-// 		button.addClass('brightest')
-// 	}
-
-// })
 
 $(window).on('resize', function() {
 	var chart = $('svg')
@@ -50,6 +38,3 @@ $(window).on('resize', function() {
 }).trigger('resize')
 
 
-$('circle').click(function() {
-	alert('test')
-})
