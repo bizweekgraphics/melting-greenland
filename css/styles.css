@@ -9,6 +9,17 @@ html {
 height : 100%;
 }
 
+.title {
+  font-family: 'Ubuntu', sans-serif;
+  text-align: center;
+  color: white;
+}
+
+.animation {
+  padding: .5em 1em .5em 1em;
+  margin-bottom: 1em;
+}
+
 #stop-animation {
   display: none;
 }
@@ -40,7 +51,6 @@ height : 100%;
 
 svg {
   margin: 0 auto;
-  margin-top: -2em;
 }
 
 .year-ul li {
@@ -84,13 +94,15 @@ button {
 }
 
 
+.key {
+  margin-top: -7em;
+}
 
 #key {
   margin: 0 auto;
   color: white;
   width: 80%;
-  height: 20%;
-  /*margin-bottom: 5%;*/
+  height: 5%;
   background: #ffffff; /* Old browsers */
   background: -moz-linear-gradient(left, #ffffff 0%, #ffff00 50%, #ff0000 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(50%,#ffff00), color-stop(100%,#ff0000)); /* Chrome,Safari4+ */
@@ -108,9 +120,18 @@ button {
 
 #arrow {
   color: white;
-  font-size: 2em;
+  font-size: 1em
+  bottom: 20%;
   position: relative;
   -webkit-margin-before: 0em;
+}
+
+#new-day-text {
+  position: absolute;
+  font-size: 1em;
+  top: 38%;
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 #text-year {

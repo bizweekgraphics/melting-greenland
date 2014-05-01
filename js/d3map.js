@@ -42,7 +42,13 @@ var y = d3.scale.linear()
 	.domain([latMin, latMax])
 	.range([height, 0])
 
+var arrowX = d3.scale.linear()
+	.domain([0, 100])
+	.range([10, 90])
+
+
 var appendMap = function(year) {
+
 
 	var meltProjection = d3.select('svg')
 		.selectAll('circle')
@@ -68,10 +74,10 @@ var appendMap = function(year) {
 				text = days + " Days"
 			}
 
-			var position = (days / 160) * 100
+			var position = arrowX((days / 160) * 100)
 			$('#arrow').animate({
 				left: position + '%'}, 10)
-			$('#day-text').text(text)
+			$('#new-day-text').text(text)
 			console.log(position)
 		})
 		.style('fill', 'black')
@@ -92,16 +98,16 @@ var appendMap = function(year) {
 		.data([1])
 
 	//append year text to svg
-	textProjection.enter()
-		.append('text')
-		.text(year)
-		.attr('width', 400)
-		.attr('height', 200)
-		.attr('x', 180)
-		.attr('y', 50)
-		.attr('id', 'text-year')
-		.style('fill', 'white')
-		.style('font-size', 55)
+	// textProjection.enter()
+	// 	.append('text')
+	// 	.text(year)
+	// 	.attr('width', 400)
+	// 	.attr('height', 200)
+	// 	.attr('x', 180)
+	// 	.attr('y', 50)
+	// 	.attr('id', 'text-year')
+	// 	.style('fill', 'white')
+	// 	.style('font-size', 55)
 
 	//append sun to svg
 	// d3.select('svg')
@@ -207,7 +213,7 @@ var updateProjection = function(year) {
 			var position = (days / 160) * 100
 			$('#arrow').animate({
 				left: position + '%'})
-			$('#day-text').text(text)
+			$('#new-day-text').text(text)
 			console.log(position)
 		})
 		.style('fill', function(d) {
