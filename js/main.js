@@ -43,8 +43,10 @@ $(window).on('resize', function() {
 	var chart = $('svg')
 	var container = chart.parent()
 	var targetWidth = container.width();
-	chart.attr('width', targetWidth);
-	chart.attr('height', Math.round(targetWidth / aspect));
+	if(Math.round(targetWidth / aspect) < window.innerHeight){
+		chart.attr('width', targetWidth);
+		chart.attr('height', Math.round(targetWidth / aspect));
+	}
 }).trigger('resize')
 
 

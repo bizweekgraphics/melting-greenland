@@ -13,6 +13,10 @@ button:hover {
 	opacity: .7;
 }
 
+svg {
+  margin: 0 auto;
+}
+
 .year-ul li {
 	margin: 2em;
   display: inline-block;

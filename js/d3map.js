@@ -132,16 +132,22 @@ var appendMap = function(year) {
 		.style('font-size', '3em')
 		.style('fill', 'white')
 
-	d3.select('svg')
+	var buttonProjection = d3.select('svg')
+		.selectAll('.year-button')
+		.data([1979, 1995, 2012])
+
+	buttonProjection.enter()
 		.append('foreignObject')
-		.attr('width', 500)
-		.attr('height', 600)
-		.attr('x', 300)
+		.attr('width', 200)
+		.attr('height', 200)
+		.attr('x', 10)
 		.attr('y', 200)
 		.append('xhtml:body')
 		.append('xhtml:ul')
 		.append('xhtml:li')
 		.attr('width', '200px')
+		.attr('class', 'thing')
+		.style('color', 'white')
 		.text('test')
 
 }
