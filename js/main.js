@@ -12,6 +12,28 @@ $(document).ready(function() {
 		updateProjection(year)
 	})
 
+	var interval;
+
+	$('#animation').click(function() {
+		$('#animation').css('display', 'none')
+		$('#stop-animation').css('display', 'block')
+		var year = 1979
+		interval = setInterval(function() {
+			if(year === 2014){
+				year = 1979
+			}
+			updateProjection(year)
+			year ++
+		}, 500)
+	})
+
+	$('#stop-animation').click(function() {
+		clearInterval(interval)
+		$('#stop-animation').css('display', 'none')
+		$('#animation').css('display', 'block')
+	})
+
+
 	appendMap(1979)
 })
 
