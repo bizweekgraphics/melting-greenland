@@ -59,7 +59,7 @@ var appendMap = function(year) {
 		})
 		.attr('r', 3)
 		.attr('class', 'data')
-		.on('click', function(d) {
+		.on('mouseover', function(d) {
 			var days = (d["year " + year])
 			var text;
 			if(days === 1){
@@ -70,7 +70,7 @@ var appendMap = function(year) {
 
 			var position = (days / 160) * 100
 			$('#arrow').animate({
-				left: position + '%'})
+				left: position + '%'}, 10)
 			$('#day-text').text(text)
 			console.log(position)
 		})
@@ -142,53 +142,53 @@ var appendMap = function(year) {
 		.data(years)
 
 	//append year click buttons to svg
-	buttonProjection.enter()
-		.append('foreignObject')
-		.attr('width', 200)
-		.attr('height', 200)
-		.attr('x', 10)
-		.attr('y', function(d){
-			var y = years.indexOf(d)
-			return 200 + (100 * y)
-		})
-		.append('xhtml:body')
-		.append('xhtml:ul')
-		.attr('class', 'year-ul')
-		.append('xhtml:li')
-		.on('click', function() {
-			$('#day-text').text('')
-			$('#arrow').animate({left: "0%"}, 1000)
+	// buttonProjection.enter()
+	// 	.append('foreignObject')
+	// 	.attr('width', 200)
+	// 	.attr('height', 200)
+	// 	.attr('x', 10)
+	// 	.attr('y', function(d){
+	// 		var y = years.indexOf(d)
+	// 		return 200 + (100 * y)
+	// 	})
+	// 	.append('xhtml:body')
+	// 	.append('xhtml:ul')
+	// 	.attr('class', 'year-ul')
+	// 	.append('xhtml:li')
+	// 	.on('click', function() {
+	// 		$('#day-text').text('')
+	// 		$('#arrow').animate({left: "0%"}, 1000)
 
-			//select button inside list element
-			var button = $(this).children()
-			$('button').removeClass()
+	// 		//select button inside list element
+	// 		var button = $(this).children()
+	// 		$('button').removeClass()
 
-			var liYear = this.textContent
-			if($('circle').length === 0) {
-				appendMap(liYear)	
-			} else {
-				updateProjection(liYear)
-			}
+	// 		var liYear = this.textContent
+	// 		if($('circle').length === 0) {
+	// 			appendMap(liYear)	
+	// 		} else {
+	// 			updateProjection(liYear)
+	// 		}
 
-			if(liYear === "1979"){
-				button.addClass('bright')
-			} else if(liYear == "1995") {
-				button.addClass('brighter')
-			} else {
-				button.addClass('brightest')
-			}
-		})
-		.append('xhtml:button')
-		.attr('width', '200px')
-		.attr('class', function(d){
-			if(d === 1979){
-				return 'bright'
-			}
-		})
-		.style('color', 'black')
-		.text(function(d){
-			return d
-		})
+	// 		if(liYear === "1979"){
+	// 			button.addClass('bright')
+	// 		} else if(liYear == "1995") {
+	// 			button.addClass('brighter')
+	// 		} else {
+	// 			button.addClass('brightest')
+	// 		}
+	// 	})
+	// 	.append('xhtml:button')
+	// 	.attr('width', '200px')
+	// 	.attr('class', function(d){
+	// 		if(d === 1979){
+	// 			return 'bright'
+	// 		}
+	// 	})
+	// 	.style('color', 'black')
+	// 	.text(function(d){
+	// 		return d
+	// 	})
 
 }
 
@@ -240,14 +240,17 @@ var updateProjection = function(year) {
 	// 		}
 	// 	})
 
-	var text = d3.select('#text-year').text()
-		if(text === "1979"){
-			return 'yellow'
-		} else if(text==="1995") {
-			return 'orange'
-		} else {
-			return 'red'
-		}
+	// var text = d3.select('#text-year').text()
+	// 	if(text === "1979"){
+	// 		$('#sun').attr('class', 'bright-fill')
+	// 		return 'yellow'
+	// 	} else if(text==="1995") {
+	// 		$('#sun').attr('class', 'brighter-fill')
+	// 		return 'orange'
+	// 	} else {
+	// 		$('#sun').attr('class', 'brightest-fill')
+	// 		return 'red'
+	// 	}
 }
 
 

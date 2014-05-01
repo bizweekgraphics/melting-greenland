@@ -3,7 +3,7 @@ $(document).ready(function() {
 	$('.year-slide').on('input', function(event) {
 		var year = this.value,
 				range = 2013 - 1979,
-				difference = this.value - 1979,
+				difference = year - 1979,
 				position = (difference * 100 / range) - 1.5,
 				yearText = $('#slide-text')
 		yearText.text(year)
@@ -17,13 +17,21 @@ $(document).ready(function() {
 	$('#animation').click(function() {
 		$('#animation').css('display', 'none')
 		$('#stop-animation').css('display', 'block')
-		var year = 1979
+		var year = $('#slide-text').text()
 		interval = setInterval(function() {
 			if(year === 2014){
 				year = 1979
 			}
 			updateProjection(year)
-			year ++
+
+			var range = 2013 - 1979,
+					difference = year - 1979,
+					position = (difference * 100 / range) - 1.5,
+					yearText = $('#slide-text')
+			yearText.text(year)
+			yearText.css('left', position + '%')
+			document.querySelector('input[type=range]').value = year;
+			$('#slide-text').text(year++)
 		}, 500)
 	})
 

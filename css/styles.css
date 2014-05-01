@@ -28,6 +28,8 @@ height : 100%;
 #slide-text {
   position: relative;
   color: white;
+  font-family: 'Ubuntu', sans-serif;
+  left: -1.5%;
   -webkit-margin-before: 0px;
   -webkit-margin-after: 0px;
 }
