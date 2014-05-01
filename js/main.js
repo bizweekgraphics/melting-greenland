@@ -32,7 +32,7 @@ $(document).ready(function() {
 			yearText.css('left', position + '%')
 			document.querySelector('input[type=range]').value = year;
 			$('#slide-text').text(year++)
-		}, 500)
+		}, 250)
 	})
 
 	$('#stop-animation').click(function() {

@@ -1,7 +1,7 @@
 var width = 800
 var height = 600
 var aspect = width/height
-var backgroundColor = "black"
+var backgroundColor = "white"
 
 var svg = d3.select('.chart-wrapper').append('svg')
 	.attr('width', '100%')
@@ -32,7 +32,7 @@ var meltMax = 160
 
 var meltX = d3.scale.linear() 
 	.domain([0, meltMax/2, meltMax])
-	.range(["white", "yellow", "red"])
+	.range(["#e4eaf5", "yellow", "red"])
 
 var x = d3.scale.linear()
 	.domain([lngMin, lngMax])
@@ -78,6 +78,7 @@ var appendMap = function(year) {
 			$('#arrow').animate({
 				left: position + '%'}, 10)
 			$('#new-day-text').text(text)
+			// $('#new-day-text').animate({left: position + '%'}, 10)
 			console.log(position)
 		})
 		.style('fill', 'black')

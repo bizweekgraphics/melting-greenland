@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
 
 body {
-  background: black;
+  background: white;
   height: 100%;
 }
 
@@ -12,12 +12,14 @@ height : 100%;
 .title {
   font-family: 'Ubuntu', sans-serif;
   text-align: center;
-  color: white;
+  color: black;
 }
 
 .animation {
   padding: .5em 1em .5em 1em;
   margin-bottom: 1em;
+  position: relative;
+  left: 8%;
 }
 
 #stop-animation {
@@ -38,7 +40,7 @@ height : 100%;
 
 #slide-text {
   position: relative;
-  color: white;
+  color: black;
   font-family: 'Ubuntu', sans-serif;
   left: -1.5%;
   -webkit-margin-before: 0px;
@@ -51,6 +53,7 @@ height : 100%;
 
 svg {
   margin: 0 auto;
+  margin-top: -1.25em;
 }
 
 .year-ul li {
@@ -80,7 +83,7 @@ button {
 #text-key li {
   display: inline-block;
   width: 49%;
-  color: white;
+  color: black;
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
 }
@@ -98,9 +101,13 @@ button {
   margin-top: -7em;
 }
 
+#key span {
+  visibility: none;
+}
+
 #key {
   margin: 0 auto;
-  color: white;
+  color: black;
   width: 80%;
   height: 5%;
   background: #ffffff; /* Old browsers */
@@ -119,19 +126,24 @@ button {
 }
 
 #arrow {
-  color: white;
+  color: black;
   font-size: 1em
   bottom: 20%;
   position: relative;
+  left: 10%;
   -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
 }
 
 #new-day-text {
-  position: absolute;
-  font-size: 1em;
-  top: 38%;
-  color: white;
+  /*position: relative;*/
+  /*left: 5%;*/
+  /*bottom: 10%;*/
+  margin: 0 auto;
+  text-align: center;
+  color: black;
   font-family: 'Ubuntu', sans-serif;
+  -webkit-margin-before: 0em;
 }
 
 #text-year {
