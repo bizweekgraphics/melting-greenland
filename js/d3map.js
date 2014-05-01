@@ -132,6 +132,18 @@ var appendMap = function(year) {
 		.style('font-size', '3em')
 		.style('fill', 'white')
 
+	d3.select('svg')
+		.append('foreignObject')
+		.attr('width', 500)
+		.attr('height', 600)
+		.attr('x', 300)
+		.attr('y', 200)
+		.append('xhtml:body')
+		.append('xhtml:ul')
+		.append('xhtml:li')
+		.attr('width', '200px')
+		.text('test')
+
 }
 
 var updateProjection = function(year) {
