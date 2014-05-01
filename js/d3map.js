@@ -132,23 +132,59 @@ var appendMap = function(year) {
 		.style('font-size', '3em')
 		.style('fill', 'white')
 
+	var years = [1979, 1995, 2012]
+
 	var buttonProjection = d3.select('svg')
 		.selectAll('.year-button')
-		.data([1979, 1995, 2012])
+		.data(years)
 
 	buttonProjection.enter()
 		.append('foreignObject')
 		.attr('width', 200)
 		.attr('height', 200)
 		.attr('x', 10)
-		.attr('y', 200)
+		.attr('y', function(d){
+			var y = years.indexOf(d)
+			return 200 + (100 * y)
+		})
 		.append('xhtml:body')
 		.append('xhtml:ul')
+		.attr('class', 'year-ul')
 		.append('xhtml:li')
+		.on('click', function() {
+			$('#day-text').text('')
+			$('#arrow').animate({left: "0%"}, 1000)
+
+			//select button inside list element
+			var button = $(this).children()
+			$('button').removeClass()
+
+			var liYear = this.textContent
+			if($('circle').length === 0) {
+				appendMap(liYear)	
+			} else {
+				updateProjection(liYear)
+			}
+
+			if(liYear === "1979"){
+				button.addClass('bright')
+			} else if(liYear == "1995") {
+				button.addClass('brighter')
+			} else {
+				button.addClass('brightest')
+			}
+		})
+		.append('xhtml:button')
 		.attr('width', '200px')
-		.attr('class', 'thing')
-		.style('color', 'white')
-		.text('test')
+		.attr('class', function(d){
+			if(d === 1979){
+				return 'bright'
+			}
+		})
+		.style('color', 'black')
+		.text(function(d){
+			return d
+		})
 
 }
 
@@ -203,3 +239,5 @@ var updateProjection = function(year) {
 			}
 		})
 }
+
+

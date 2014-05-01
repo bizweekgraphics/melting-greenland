@@ -9,12 +9,13 @@ html {
 height : 100%;
 }
 
-button:hover {
+/*button:hover {
 	opacity: .7;
-}
+}*/
 
 svg {
   margin: 0 auto;
+  margin-top: -2em;
 }
 
 .year-ul li {
@@ -29,6 +30,7 @@ ul {
 
 button {
   padding: 1em 2em 1em 2em;
+  font-size: 1.25em;
   border-radius: 1em;
   border:none;
   font-family: 'Ubuntu', sans-serif;
