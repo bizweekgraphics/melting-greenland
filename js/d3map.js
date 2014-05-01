@@ -48,6 +48,7 @@ var appendMap = function(year) {
 		.selectAll('circle')
 		.data(greenland)
 
+	//append melt circles to svg
 	meltProjection.enter()
 		.append('circle')
 		.attr('cx', function(d){
@@ -90,6 +91,7 @@ var appendMap = function(year) {
 		.selectAll('text')
 		.data([1])
 
+	//append year text to svg
 	textProjection.enter()
 		.append('text')
 		.text(year)
@@ -101,6 +103,7 @@ var appendMap = function(year) {
 		.style('fill', 'white')
 		.style('font-size', 55)
 
+	//append sun to svg
 	d3.select('svg')
 		.append('circle')
 		.attr('cx', 700)
@@ -120,7 +123,7 @@ var appendMap = function(year) {
 	// 	.attr('id', 'day-text')
 	// 	.style('font-size', '2em')
 
-
+	//append number of melt days to svg
 	d3.select('svg')
 		.append('text')
 		.text('')
@@ -138,6 +141,7 @@ var appendMap = function(year) {
 		.selectAll('.year-button')
 		.data(years)
 
+	//append year click buttons to svg
 	buttonProjection.enter()
 		.append('foreignObject')
 		.attr('width', 200)
@@ -206,9 +210,9 @@ var updateProjection = function(year) {
 			$('#day-text').text(text)
 			console.log(position)
 		})
-		.transition()
-		.duration(1000)
-		.delay(100)
+		// .transition()
+		// .duration(1000)
+		// .delay(100)
 		.style('fill', function(d) {
 			if(d["year " + year] === 0){
 				return backgroundColor
