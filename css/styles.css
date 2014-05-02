@@ -101,6 +101,24 @@ button {
   margin-top: -7em;
 }
 
+.key-proj {
+  min-height: 35em;
+  max-width: 2em;
+  border: 1px solid black;
+  background: #ff0000; /* Old browsers */
+  background: -moz-linear-gradient(top, #ff0000 0%, #ffff00 50%, #ffffff 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff0000), color-stop(50%,#ffff00), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ff0000 0%,#ffff00 50%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ff0000 0%,#ffff00 50%,#ffffff 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ff0000 0%,#ffff00 50%,#ffffff 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #ff0000 0%,#ffff00 50%,#ffffff 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0000', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
+
+.key-text {
+  font-family: 'Ubuntu', sans-serif;
+}
+
 #key span {
   visibility: none;
 }

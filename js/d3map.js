@@ -81,10 +81,10 @@ var appendMap = function(year) {
 			// $('#new-day-text').animate({left: position + '%'}, 10)
 			console.log(position)
 		})
-		.style('fill', 'black')
-		.transition()
-		.duration(500)
-		.delay(100)
+		// .style('fill', 'black')
+		// .transition()
+		// .duration(500)
+		// .delay(100)
 		.style('fill', function(d) {
 			if(d["year " + year] === 0){
 				return backgroundColor
@@ -142,11 +142,56 @@ var appendMap = function(year) {
 		.style('font-size', '3em')
 		.style('fill', 'white')
 
-	var years = [1979, 1995, 2012]
+	// var years = [1979, 1995, 2012]
 
-	var buttonProjection = d3.select('svg')
-		.selectAll('.year-button')
-		.data(years)
+	// var buttonProjection = d3.select('svg')
+	// 	.selectAll('.year-button')
+	// 	.data(years)
+
+	d3.select('svg')
+		.append('foreignObject')
+		.attr('width', 200)
+		.attr('height', 1000)
+		.attr('x', 25)
+		.attr('y', 60)
+		.append('xhtml:div')
+		.attr('class', 'key-proj')
+
+	d3.select('svg')
+		.append('foreignObject')
+			.attr('width', 100)
+			.attr('height', 100)
+			.attr('x', 0)
+			.attr('y', 600)
+			.append('xhtml:p')
+			.attr('id', 'key-min')
+			.attr('class', 'key-text')
+			.text('0')
+			.style('font-size', '2em')
+
+	d3.select('svg')
+		.append('foreignObject')
+			.attr('width', 100)
+			.attr('height', 100)
+			.attr('x', -35)
+			.attr('y', 50)
+			.append('xhtml:p')
+			.attr('id', 'key-max')
+			.attr('class', 'key-text')
+			.text('100')
+			.style('font-size', '2em')
+
+	d3.select('svg')
+		.append('foreignObject')
+		.attr('width', 300)
+		.attr('height', 100)
+		.attr('x', 0)
+		.attr('y', 300)
+		.append('xhtml:p')
+		.text('—')
+		.style('font-size', '5em')
+
+
 
 	//append year click buttons to svg
 	// buttonProjection.enter()
