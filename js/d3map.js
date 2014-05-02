@@ -46,6 +46,10 @@ var arrowX = d3.scale.linear()
 	.domain([0, 100])
 	.range([10, 90])
 
+var tickScale = d3.scale.linear()
+	.domain([meltMax, 0])
+	.range([8, 568])
+
 
 var appendMap = function(year) {
 
@@ -80,6 +84,10 @@ var appendMap = function(year) {
 			$('#new-day-text').text(text)
 			// $('#new-day-text').animate({left: position + '%'}, 10)
 			console.log(position)
+
+			d3.select('#key-tick').attr('y', function(){
+				return tickScale(days)
+			})
 		})
 		// .style('fill', 'black')
 		// .transition()
@@ -94,9 +102,9 @@ var appendMap = function(year) {
 		})
 
 
-	var textProjection = d3.select('svg')
-		.selectAll('text')
-		.data([1])
+	// var textProjection = d3.select('svg')
+	// 	.selectAll('text')
+	// 	.data([1])
 
 	//append year text to svg
 	// textProjection.enter()
@@ -148,6 +156,7 @@ var appendMap = function(year) {
 	// 	.selectAll('.year-button')
 	// 	.data(years)
 
+	//appends key div to svg
 	d3.select('svg')
 		.append('foreignObject')
 		.attr('width', 200)
@@ -157,6 +166,7 @@ var appendMap = function(year) {
 		.append('xhtml:div')
 		.attr('class', 'key-proj')
 
+	//appends key min text to svg
 	d3.select('svg')
 		.append('foreignObject')
 			.attr('width', 100)
@@ -169,6 +179,7 @@ var appendMap = function(year) {
 			.text('0')
 			.style('font-size', '2em')
 
+	//appends key max text to svg
 	d3.select('svg')
 		.append('foreignObject')
 			.attr('width', 100)
@@ -178,18 +189,21 @@ var appendMap = function(year) {
 			.append('xhtml:p')
 			.attr('id', 'key-max')
 			.attr('class', 'key-text')
-			.text('100')
+			.text('160')
 			.style('font-size', '2em')
 
+	//appends tick to key scale
 	d3.select('svg')
 		.append('foreignObject')
 		.attr('width', 300)
 		.attr('height', 100)
-		.attr('x', 0)
+		.attr('x', 2)
 		.attr('y', 300)
+		.attr('id', 'key-tick')
 		.append('xhtml:p')
 		.text('—')
 		.style('font-size', '5em')
+
 
 
 
