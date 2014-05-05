@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+	var slideScale = d3.scale.linear()
+		.domain([1979,2013])
+		.range([-5.5, 90])
+
 	$('.year-slide').on('input', function(event) {
 		var year = this.value,
 				range = 2013 - 1979,
@@ -7,7 +11,10 @@ $(document).ready(function() {
 				position = (difference * 100 / range) - 1.5,
 				yearText = $('#slide-text')
 		yearText.text(year)
-		yearText.css('left', position + '%')
+		d3.select('#slide-text')
+			.style('left', function() {
+				return slideScale(year) + '%'
+			})
 
 		updateProjection(year)
 	})
@@ -24,15 +31,15 @@ $(document).ready(function() {
 			}
 			updateProjection(year)
 
-			var range = 2013 - 1979,
-					difference = year - 1979,
-					position = (difference * 100 / range) - 1.5,
-					yearText = $('#slide-text')
+			var yearText = $('#slide-text')
 			yearText.text(year)
-			yearText.css('left', position + '%')
+			d3.select('#slide-text')
+				.style('left', function() {
+					return slideScale(year) + '%'
+				})
 			document.querySelector('input[type=range]').value = year;
 			$('#slide-text').text(year++)
-		}, 250)
+		}, 1)
 	})
 
 	$('#stop-animation').click(function() {
@@ -45,15 +52,6 @@ $(document).ready(function() {
 	appendMap(1979)
 })
 
-// $('#year-submit').click(function() {
-// 	var submitYear = $('#year').val()
-// 	if($('circle').length === 0) {
-// 		appendMap(submitYear)	
-// 	} else {
-// 		updateProjection(submitYear)
-// 	}
-// 	return false;
-// })
 
 
 

@@ -1,5 +1,6 @@
-var width = 800
-var height = 600
+var margin = {top: 0, right: 20, bottom: 0, left: 20}
+var width = 800 - margin.left - margin.right
+var height = 600 - margin.bottom - margin.top
 var aspect = width/height
 var backgroundColor = "white"
 
@@ -36,7 +37,7 @@ var meltX = d3.scale.linear()
 
 var x = d3.scale.linear()
 	.domain([lngMin, lngMax])
-	.range([0, width])
+	.range([200, width])
 
 var y = d3.scale.linear()
 	.domain([latMin, latMax])
@@ -49,6 +50,10 @@ var arrowX = d3.scale.linear()
 var tickScale = d3.scale.linear()
 	.domain([meltMax, 0])
 	.range([8, 568])
+
+var keyTextScale = d3.scale.linear()
+	.domain([meltMax, 0])
+	.range([43, 600])
 
 
 var appendMap = function(year) {
@@ -77,17 +82,16 @@ var appendMap = function(year) {
 			} else {
 				text = days + " Days"
 			}
-
-			var position = arrowX((days / 160) * 100)
-			$('#arrow').animate({
-				left: position + '%'}, 10)
-			$('#new-day-text').text(text)
-			// $('#new-day-text').animate({left: position + '%'}, 10)
-			console.log(position)
-
 			d3.select('#key-tick').attr('y', function(){
 				return tickScale(days)
 			})
+
+			d3.select('#key-text').attr('y', function() {
+				return keyTextScale(days)
+			})
+			d3.select('#key-text').text(text)
+			d3.select('#key-text').style('font-size', '2em')
+			d3.select('#key-text').style('font-family', 'Ubuntu')
 		})
 		.style('fill', function(d) {
 			if(d["year " + year] === 0){
@@ -113,8 +117,8 @@ var appendMap = function(year) {
 	d3.select('svg')
 		.append('foreignObject')
 		.attr('width', 200)
-		.attr('height', 1000)
-		.attr('x', 25)
+		.attr('height', 900)
+		.attr('x', 45)
 		.attr('y', 60)
 		.append('xhtml:div')
 		.attr('class', 'key-proj')
@@ -150,18 +154,31 @@ var appendMap = function(year) {
 		.append('foreignObject')
 		.attr('width', 300)
 		.attr('height', 100)
-		.attr('x', 2)
+		.attr('x', 22)
 		.attr('y', 568)
 		.attr('id', 'key-tick')
 		.append('xhtml:p')
 		.text('—')
 		.style('font-size', '5em')
+
+	d3.select('svg')
+		.append('foreignObject')
+		.attr('width', 300)
+		.attr('height', 100)
+		.attr('x', 110)
+		.attr('y', 600)
+		.attr('id', 'key-text')
+		.attr('class', 'key')
+		.append('xhtml:p')
+		.text('0 days')
+		.style('font-size', '2em')
+		.style('font-family', 'Ubuntu')
 }
 
 var updateProjection = function(year) {
 
 	d3.selectAll('.data')
-		.on('click', function(d) {
+		.on('mouseover', function(d) {
 			var days = (d["year " + year])
 			var text;
 			if(days === 1){
@@ -169,12 +186,16 @@ var updateProjection = function(year) {
 			} else {
 				text = days + " Days"
 			}
+			d3.select('#key-tick').attr('y', function(){
+				return tickScale(days)
+			})
 
-			var position = (days / 160) * 100
-			$('#arrow').animate({
-				left: position + '%'})
-			$('#new-day-text').text(text)
-			console.log(position)
+			d3.select('#key-text').attr('y', function() {
+				return keyTextScale(days)
+			})
+			d3.select('#key-text').text(text)
+			d3.select('#key-text').style('font-size', '2em')
+			d3.select('#key-text').style('font-family', 'Ubuntu')
 		})
 		.style('fill', function(d) {
 			if(d["year " + year] === 0){
