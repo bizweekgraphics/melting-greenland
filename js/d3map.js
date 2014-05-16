@@ -27,12 +27,12 @@ var meltX = d3.scale.linear()
 //scale to calculate position of key tick marker
 var tickScale = d3.scale.linear()
 	.domain([meltMax, 0])
-	.range([233, 35])
+	.range([221, 23])
 
 //scale to calculate position of day text underneath tick marker
 var keyTextScale = d3.scale.linear()
 	.domain([meltMax, 0])
-	.range([230, 35])
+	.range([218, 23])
 
 
 var appendMap = function(year) {
@@ -93,7 +93,7 @@ var appendMap = function(year) {
 		.append('foreignObject')
 		.attr('width', 200)
 		.attr('height', 50)
-		.attr('x', 35)
+		.attr('x', 23)
 		.attr('y', 400)
 		.append('xhtml:div')
 		.attr('class', 'key-proj')
@@ -103,7 +103,7 @@ var appendMap = function(year) {
 		.append('text')
 		.attr('width', 300)
 		.attr('height', 300)
-		.attr('x', 35)
+		.attr('x', 23)
 		.attr('y', 460)
 		.attr('id', 'key-tick')
 		.text('▲')
@@ -112,7 +112,7 @@ var appendMap = function(year) {
 		.append('tspan')
 		.attr('width', 300)
 		.attr('height', 100)
-		.attr('x', 35)
+		.attr('x', 23)
 		.attr('y', 500)
 		.attr('id', 'key-text')
 		.attr('class', 'key')
@@ -123,25 +123,25 @@ var appendMap = function(year) {
 
 
 	//appends key explanation text
-	d3.select('svg')
-		.append('text')
-		.text('Days Where Melting')
-		.attr('width', 200)
-		.attr('height', 150)
-		.attr('x', 135)
-		.attr('y', 360)
-		.attr('class', 'key-text')
-		.style('text-anchor', 'middle')
-		.append('tspan')
-		.attr('x', 135)
-		.attr('y', 385)
-		.text('Was Observed')
-		.style('text-anchor', 'middle')
+	// d3.select('svg')
+	// 	.append('text')
+	// 	.text('Days Where Melting')
+	// 	.attr('width', 200)
+	// 	.attr('height', 150)
+	// 	.attr('x', 135)
+	// 	.attr('y', 360)
+	// 	.attr('class', 'key-text')
+	// 	.style('text-anchor', 'middle')
+	// 	.append('tspan')
+	// 	.attr('x', 135)
+	// 	.attr('y', 385)
+	// 	.text('Was Observed')
+	// 	.style('text-anchor', 'middle')
 
 
 	//appending dek to svg
 	var dekIncrement = 30
-	var dekBase = 105
+	var dekBase = 90
 
 	d3.select('svg')
 		.append('text')
@@ -168,16 +168,39 @@ var appendMap = function(year) {
 		.attr('x', 123)
 		.attr('y', dekBase + dekIncrement*4)
 		.text("mineral industry")
+		.append('tspan')
+		.text('Days Where Melting')
+		.attr('width', 200)
+		.attr('height', 150)
+		.attr('x', 123)
+		.attr('y', 360)
+		.attr('class', 'key-text')
+		.style('text-anchor', 'middle')
+		.append('tspan')
+		.attr('x', 123)
+		.attr('y', 390)
+		.text('Was Observed')
+		.style('text-anchor', 'middle')
+		.append('tspan')
+		.attr('x', 10)
+		.attr('y', 425)
+		.text('0')
+		.append('tspan')
+		.attr('x', 245)
+		.attr('y', 425)
+		.text('160')
+
 
 	d3.select('svg')
 		.append('foreignObject')
 		.attr('width', 200)
 		.attr('height', 50)
 		.attr('x', 58)
-		.attr('y', 240)
+		.attr('y', 220)
 		.append('xhtml:button')
 		.text('Learn More')
 		.attr('class', 'button')
+
 
 
 }

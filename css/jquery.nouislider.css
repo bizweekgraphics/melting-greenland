@@ -155,10 +155,10 @@
 }
 
 .noUi-handle div {
-	font-family: 'BWHaasRegular';
+	font-family: helvetica;
 	display: block;
 	position: absolute;
-	top: 12%;
+	top: 14%;
 	left: 10%;
 }
 
