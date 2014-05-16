@@ -1,68 +1,76 @@
 $(document).ready(function() {
 
-	var slideScale = d3.scale.linear()
-		.domain([1979,2013])
-		.range([-5.5, 90])
+	//initializing jquerynouislider
+	var toolTip = $.Link({
+		target: '-tooltip-'
+	});
 
-	$('.year-slide').on('input', function(event) {
-		var year = this.value,
-				range = 2013 - 1979,
-				difference = year - 1979,
-				position = (difference * 100 / range) - 1.5,
-				yearText = $('#slide-text')
-		yearText.text(year)
-		d3.select('#slide-text')
-			.style('left', function() {
-				return slideScale(year) + '%'
-			})
+	$("#slider").noUiSlider({
+		start: 1979,
+		step: 1,
+		range: {
+			'min': 1979,
+			'max': 2013
+		},
+		serialization: {
+		lower: [ toolTip ],
+		format: {
+			decimals: 0
+		}
+	}
+	});
 
-		updateProjection(year)
+	$("#slider").on({
+		slide: function() {
+			year = $('#slider').val()
+			var handle = $('.noUi-handle div')
+			if(year > 1999 && year < 2010) {
+				handle.css('left', '4%')
+			} else {
+				handle.css('left', '10%')
+			}
+			updateProjection(year)
+		}
 	})
+
+	//ensures that svg will fit inside the window
+	if(window.innerWidth > 480) {
+		$('svg').css('max-height', window.innerHeight - $('.title').height())	
+	}
 
 	var interval;
 
+	//sets listeners for animation button
 	$('#animation').click(function() {
 		$('#animation').css('display', 'none')
 		$('#stop-animation').css('display', 'block')
-		var year = $('#slide-text').text()
+		var year = $('#slider').val()
 		interval = setInterval(function() {
+			var handle = $('.noUi-handle div')
+			if(year > 1999 && year < 2010) {
+				handle.css('left', '4%')
+			} else {
+				handle.css('left', '10%')
+			}
+			
 			if(year === 2014){
 				year = 1979
 			}
 			updateProjection(year)
+			$('#slider').val(year++)
 
-			var yearText = $('#slide-text')
-			yearText.text(year)
-			d3.select('#slide-text')
-				.style('left', function() {
-					return slideScale(year) + '%'
-				})
-			document.querySelector('input[type=range]').value = year;
-			$('#slide-text').text(year++)
 		}, 1)
 	})
 
+	//stops animation and kills setInterval
 	$('#stop-animation').click(function() {
 		clearInterval(interval)
 		$('#stop-animation').css('display', 'none')
 		$('#animation').css('display', 'block')
 	})
 
-
 	appendMap(1979)
 })
 
-
-
-
-$(window).on('resize', function() {
-	var chart = $('svg')
-	var container = chart.parent()
-	var targetWidth = container.width();
-	if(Math.round(targetWidth / aspect) < window.innerHeight){
-		chart.attr('width', targetWidth);
-		chart.attr('height', Math.round(targetWidth / aspect));
-	}
-}).trigger('resize')
 
 

@@ -1,63 +1,57 @@
-var margin = {top: 0, right: 20, bottom: 0, left: 20}
-var width = 800 - margin.left - margin.right
-var height = 600 - margin.bottom - margin.top
+var margin = {top: 0, right: 0, bottom: 0, left: 0}
+var padding = {top: 0, right: 0, bottom: 0, left: 0}
+var outerWidth = 500
+var outerHeight = 600
+var innerWidth = outerWidth - margin.left - margin.right
+var innerHeight = outerHeight - margin.top - margin.bottom
+var width = innerWidth - padding.left - padding.right
+var height = innerHeight - padding.top - padding.bottom
 var aspect = width/height
-var backgroundColor = "white"
+var backgroundColor = "rgba(255, 255, 255, 0)"
 
 var svg = d3.select('.chart-wrapper').append('svg')
 	.attr('width', '100%')
 	.attr('height', '100%')
 	.attr('id', 'chart')
-	.attr('viewBox', '0 0 800 800')
+	.attr('viewBox', '0 0 ' + width + ' ' + height)
 	.attr('preserverAspectRatio', 'xMinYMin')
-
-var latMin = d3.min(greenland, function(point) {
-	return point.latitude
-})
-
-var lngMin = d3.min(greenland, function(point) {
-	return point.longitude
-})
-
-var latMax = d3.max(greenland, function(point) {
-	return point.latitude
-})
-
-var lngMax = d3.max(greenland, function(point) {
-	return point.longitude
-})
 
 // calculated in maxHelper.rb
 var meltMax = 160
 
-
+//gradient scale for melt circles
 var meltX = d3.scale.linear() 
 	.domain([0, meltMax/2, meltMax])
 	.range(["#e4eaf5", "yellow", "red"])
 
-var x = d3.scale.linear()
-	.domain([lngMin, lngMax])
-	.range([200, width])
-
-var y = d3.scale.linear()
-	.domain([latMin, latMax])
-	.range([height, 0])
-
-var arrowX = d3.scale.linear()
-	.domain([0, 100])
-	.range([10, 90])
-
+//scale to calculate position of key tick marker
 var tickScale = d3.scale.linear()
 	.domain([meltMax, 0])
-	.range([8, 568])
+	.range([233, 35])
 
+//scale to calculate position of day text underneath tick marker
 var keyTextScale = d3.scale.linear()
 	.domain([meltMax, 0])
-	.range([43, 600])
+	.range([230, 35])
 
 
 var appendMap = function(year) {
 
+	var projection = d3.geo.transverseMercator()
+		.center([-20, 78])
+		.scale(1200)
+		.rotate([35, 6, 23])
+
+	var path = d3.geo.path()
+		.projection(projection)
+
+	svg.append('g')
+		.attr('id', 'greenland')
+		.selectAll('path')
+		.data(greenlandMap.features)
+		.enter().append('path')
+		.attr('d', path)
+		.style('fill', backgroundColor)
 
 	var meltProjection = d3.select('svg')
 		.selectAll('circle')
@@ -66,32 +60,25 @@ var appendMap = function(year) {
 	//append melt circles to svg
 	meltProjection.enter()
 		.append('circle')
-		.attr('cx', function(d){
-			return x(d.longitude)
+		.attr('cx', function(d) {
+			return projection([d.longitude, d.latitude])[0]
 		})
-		.attr('cy', function(d){
-			return y(d.latitude)
+		.attr('cy', function(d) {
+			return projection([d.longitude, d.latitude])[1]
 		})
-		.attr('r', 3)
+		.attr('r', 2.5)
 		.attr('class', 'data')
 		.on('mouseover', function(d) {
 			var days = (d["year " + year])
-			var text;
-			if(days === 1){
-				text = "1 Day"
-			} else {
-				text = days + " Days"
-			}
-			d3.select('#key-tick').attr('y', function(){
+
+			d3.select('#key-tick').attr('x', function(){
 				return tickScale(days)
 			})
 
-			d3.select('#key-text').attr('y', function() {
+			d3.select('#key-text').attr('x', function() {
 				return keyTextScale(days)
 			})
-			d3.select('#key-text').text(text)
-			d3.select('#key-text').style('font-size', '2em')
-			d3.select('#key-text').style('font-family', 'Ubuntu')
+			d3.select('#key-text').text(days)
 		})
 		.style('fill', function(d) {
 			if(d["year " + year] === 0){
@@ -101,101 +88,116 @@ var appendMap = function(year) {
 			}
 		})
 
-	//append number of melt days to svg
-	d3.select('svg')
-		.append('text')
-		.text('')
-		.attr('width', 100)
-		.attr('height', 150)
-		.attr('x', 600)
-		.attr('y', 350)
-		.attr('id', 'day-text')
-		.style('font-size', '3em')
-		.style('fill', 'white')
-
-	//appends key div to svg
+	//appends gradient key/div
 	d3.select('svg')
 		.append('foreignObject')
 		.attr('width', 200)
-		.attr('height', 900)
-		.attr('x', 45)
-		.attr('y', 60)
+		.attr('height', 50)
+		.attr('x', 35)
+		.attr('y', 400)
 		.append('xhtml:div')
 		.attr('class', 'key-proj')
 
-	//appends key min text to svg
+	//appends key tick marker and number of days text element
 	d3.select('svg')
-		.append('foreignObject')
-			.attr('width', 100)
-			.attr('height', 100)
-			.attr('x', 0)
-			.attr('y', 600)
-			.append('xhtml:p')
-			.attr('id', 'key-min')
-			.attr('class', 'key-text')
-			.text('0')
-			.style('font-size', '2em')
-
-	//appends key max text to svg
-	d3.select('svg')
-		.append('foreignObject')
-			.attr('width', 100)
-			.attr('height', 100)
-			.attr('x', -35)
-			.attr('y', 50)
-			.append('xhtml:p')
-			.attr('id', 'key-max')
-			.attr('class', 'key-text')
-			.text('160')
-			.style('font-size', '2em')
-
-	//appends tick to key scale
-	d3.select('svg')
-		.append('foreignObject')
+		.append('text')
 		.attr('width', 300)
-		.attr('height', 100)
-		.attr('x', 22)
-		.attr('y', 568)
+		.attr('height', 300)
+		.attr('x', 35)
+		.attr('y', 460)
 		.attr('id', 'key-tick')
-		.append('xhtml:p')
-		.text('—')
-		.style('font-size', '5em')
-
-	d3.select('svg')
-		.append('foreignObject')
+		.text('▲')
+		.style('font-size', '2em')
+		.style('text-anchor', 'middle')
+		.append('tspan')
 		.attr('width', 300)
 		.attr('height', 100)
-		.attr('x', 110)
-		.attr('y', 600)
+		.attr('x', 35)
+		.attr('y', 500)
 		.attr('id', 'key-text')
 		.attr('class', 'key')
-		.append('xhtml:p')
-		.text('0 days')
-		.style('font-size', '2em')
-		.style('font-family', 'Ubuntu')
+		.text('0')
+		.style('font-size', '1.2em')
+		.style('font-family', 'BWHaasRegular')
+		.style('text-anchor', 'middle')
+
+
+	//appends key explanation text
+	d3.select('svg')
+		.append('text')
+		.text('Days Where Melting')
+		.attr('width', 200)
+		.attr('height', 150)
+		.attr('x', 135)
+		.attr('y', 360)
+		.attr('class', 'key-text')
+		.style('text-anchor', 'middle')
+		.append('tspan')
+		.attr('x', 135)
+		.attr('y', 385)
+		.text('Was Observed')
+		.style('text-anchor', 'middle')
+
+
+	//appending dek to svg
+	var dekIncrement = 30
+	var dekBase = 105
+
+	d3.select('svg')
+		.append('text')
+		.text('But')
+		.attr('width', 200)
+		.attr('height', 150)
+		.attr('x', 123)
+		.attr('y', dekBase)
+		.attr('class', 'dek-text')
+		.style('text-anchor', 'middle')
+		.append('tspan')
+		.attr('x', 123)
+		.attr('y', dekBase + dekIncrement)
+		.text("a melting icesheet")
+		.append('tspan')
+		.attr('x', 123)
+		.attr('y', dekBase + dekIncrement*2)
+		.text("means big business")
+		.append('tspan')
+		.attr('x', 123)
+		.attr('y', dekBase + dekIncrement*3)
+		.text("for Greenland's")
+		.append('tspan')
+		.attr('x', 123)
+		.attr('y', dekBase + dekIncrement*4)
+		.text("mineral industry")
+
+	d3.select('svg')
+		.append('foreignObject')
+		.attr('width', 200)
+		.attr('height', 50)
+		.attr('x', 58)
+		.attr('y', 240)
+		.append('xhtml:button')
+		.text('Learn More')
+		.attr('class', 'button')
+
+
 }
 
+
+//updates circle colors when viewing a different year
 var updateProjection = function(year) {
 
 	d3.selectAll('.data')
 		.on('mouseover', function(d) {
 			var days = (d["year " + year])
-			var text;
-			if(days === 1){
-				text = "1 Day"
-			} else {
-				text = days + " Days"
-			}
-			d3.select('#key-tick').attr('y', function(){
+
+			d3.select('#key-tick').attr('x', function(){
 				return tickScale(days)
 			})
 
-			d3.select('#key-text').attr('y', function() {
+			d3.select('#key-text').attr('x', function() {
 				return keyTextScale(days)
 			})
-			d3.select('#key-text').text(text)
-			d3.select('#key-text').style('font-size', '2em')
-			d3.select('#key-text').style('font-family', 'Ubuntu')
+			d3.select('#key-text').text(days)
 		})
 		.style('fill', function(d) {
 			if(d["year " + year] === 0){
