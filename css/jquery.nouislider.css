@@ -25,14 +25,15 @@
 	position: absolute;
 	font-family: helvetica;
 	/*font-size: 1.5em;*/
-	/*bottom: -120%;*/
+	bottom: -120%;
 	left: -10%;
 }
 
 .noUi-base:after {
 	content: '2013';
+	position: absolute;
 	/*position: relative;*/
-	left: 85%;
+	left: 95%;
 	bottom: -120%;
 	font-family: helvetica;
 	/*font-size: 1.5em;*/
