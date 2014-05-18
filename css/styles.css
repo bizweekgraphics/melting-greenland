@@ -58,6 +58,7 @@ body {
 #slider {
   width: 50%;
   margin: 0 auto;
+  max-width: 541px;
 }
 
 #slider-year {

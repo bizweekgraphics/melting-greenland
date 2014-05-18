@@ -201,6 +201,9 @@ var appendMap = function(year) {
 		.append('xhtml:button')
 		.text('Learn More')
 		.attr('class', 'button')
+		.on('click', function() {
+			window.location.href='http://www.businessweek.com/articles/2014-05-01/dig-while-the-sun-shines';
+		})
 
 	// d3.select('.chart-wrapper svg')
 	// 	.append('text')
