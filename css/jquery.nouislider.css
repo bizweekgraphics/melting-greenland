@@ -18,6 +18,16 @@
 	height: 100%;
 	position: relative;
 }
+
+.noUi-base:after {
+	content: '2013';
+	position: relative;
+	left: 105%;
+	bottom: 34%;
+	font-family: helvetica;
+	font-size: 1.5em;
+}
+
 .noUi-origin {
 	position: absolute;
 	right: 0;
