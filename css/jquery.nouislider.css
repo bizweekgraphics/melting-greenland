@@ -19,13 +19,23 @@
 	position: relative;
 }
 
+.noUi-base:before {
+	content: '1979';
+	/*position: relative;*/
+	position: absolute;
+	font-family: helvetica;
+	/*font-size: 1.5em;*/
+	/*bottom: -120%;*/
+	left: -10%;
+}
+
 .noUi-base:after {
 	content: '2013';
-	position: relative;
-	left: 105%;
-	bottom: 34%;
+	/*position: relative;*/
+	left: 85%;
+	bottom: -120%;
 	font-family: helvetica;
-	font-size: 1.5em;
+	/*font-size: 1.5em;*/
 }
 
 .noUi-origin {
