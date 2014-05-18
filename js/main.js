@@ -35,7 +35,7 @@ $(document).ready(function() {
 
 	//ensures that svg will fit inside the window
 	if(window.innerWidth > 480) {
-		$('svg').css('max-height', window.innerHeight - $('.title').height())	
+		$('.chart-wrapper svg').css('max-height', window.innerHeight - $('.title').height())	
 	}
 
 	var interval;

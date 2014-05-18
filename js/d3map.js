@@ -53,7 +53,7 @@ var appendMap = function(year) {
 		.attr('d', path)
 		.style('fill', backgroundColor)
 
-	var meltProjection = d3.select('svg')
+	var meltProjection = d3.select('.chart-wrapper svg')
 		.selectAll('circle')
 		.data(greenland)
 
@@ -89,7 +89,7 @@ var appendMap = function(year) {
 		})
 
 	//appends gradient key/div
-	d3.select('svg')
+	d3.select('.chart-wrapper svg')
 		.append('foreignObject')
 		.attr('width', 200)
 		.attr('height', 50)
@@ -99,7 +99,7 @@ var appendMap = function(year) {
 		.attr('class', 'key-proj')
 
 	//appends key tick marker and number of days text element
-	d3.select('svg')
+	d3.select('.chart-wrapper svg')
 		.append('text')
 		.attr('width', 300)
 		.attr('height', 300)
@@ -120,6 +120,7 @@ var appendMap = function(year) {
 		.style('font-size', '1.2em')
 		.style('font-family', 'BWHaasRegular')
 		.style('text-anchor', 'middle')
+
 
 
 	//appends key explanation text
@@ -143,7 +144,7 @@ var appendMap = function(year) {
 	var dekIncrement = 30
 	var dekBase = 90
 
-	d3.select('svg')
+	d3.select('.chart-wrapper svg')
 		.append('text')
 		.text('But')
 		.attr('width', 200)
@@ -191,7 +192,7 @@ var appendMap = function(year) {
 		.text('160')
 
 
-	d3.select('svg')
+	d3.select('.chart-wrapper svg')
 		.append('foreignObject')
 		.attr('width', 200)
 		.attr('height', 50)
@@ -200,6 +201,26 @@ var appendMap = function(year) {
 		.append('xhtml:button')
 		.text('Learn More')
 		.attr('class', 'button')
+
+	d3.select('.chart-wrapper svg')
+		.append('text')
+		.text('1979')
+		.attr('width', 100)
+		.attr('height', 30)
+		.attr('x', -50)
+		.attr('y', 20)
+		.attr('id', 'first-year')
+		.attr('class', 'year')
+
+	d3.select('.chart-wrapper svg')
+		.append('text')
+		.text('2013')
+		.attr('width', 100)
+		.attr('height', 30)
+		.attr('x', 505)
+		.attr('y', 20)
+		.attr('id', 'last-year')
+		.attr('class', 'year')
 
 
 

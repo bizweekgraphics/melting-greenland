@@ -61,26 +61,38 @@ body {
 }
 
 #slider-year {
-  height: 300px;
-  position: relative;
+  /*height: 300px;*/
+  /*position: absolute;*/
+  width: 100%;
   z-index: 100;
+  margin: 0 auto;
+  text-align: center;
+  display: inline-block;
+  margin-bottom:;
 }
 
-.year {
-  display: inline-block;
-  position: relative;
+/*.year {
+  display: block;
+  text-align: center;
   font-family: helvetica;
   font-size: 1.5em;
-  /*top: -2%;*/
 }
 
 #year-first {
-  /*left: -140%;*/
+  left: -140%;
+  margin-right: 11em;
 }
 
 #year-last {
-  /*left: 503%;*/
+  margin-left: 11em;
+  left: 503%;
+}*/
+
+.year {
+  font-family: helvetica;
+  font-size: 1.5em;
 }
+
 
 #field {
   margin-top: 3%;
